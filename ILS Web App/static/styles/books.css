@@ -1,0 +1,35 @@
+table {
+	border: 0;
+	border-collapse:collapse;
+	margin:auto;
+	position:relative; 
+	top:150px;
+  	border-collapse: collapse;
+}
+
+td, th {
+ 	border: 0;
+	padding: 0.5rem;
+	text-align: left;
+}
+
+body {
+  padding-top: 56px;
+}
+#logout {
+cursor:pointer;
+width: 100px;
+text-indent: 40px;	
+display: block;
+display: incline-block;
+margin: 0 auto;
+text-align:left;
+font-size: 14px;
+color:White;
+right:10px
+}
+
+#btnwrap{
+    width: 100%;
+}
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Integrated Library System</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../static/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../static/styles/payment.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img class="img-responsive2"
+        src="../static/images/ILSLogo.png" width="95" height="80">Integrated Library System Singapore</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/booksearch">Book Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/showfine">My Fines</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/reserve">My Reservations</a>
+          </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Overview ILS</a>
+          </li>
+        </ul>
+        <a class="res-nav_click" href="/logout"><i class="fa-bars"></i></a>
+            <a href="/logout" id="logout" >Log out</a>
+      </div>
+    </div>
+  </nav>
+
+
+
+</body>
+
+
+<div class="row" style="margin-top:200px">
+  <div class="col-50">
+    <div class="container2">
+       {% with messages = get_flashed_messages() %} {% if messages %}
+                  <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                     <span>{{ messages[0] }}</span>
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     </button>
+                  </div>
+                  {% endif %} {% endwith %}
+      <form action="#", method="post">
+
+        <div class="row">
+          <div class="col-50">
+         
+
+          <div class="col-50">
+            <h3>Payment</h3>
+            <label for="cname">Name on Card</label>
+            <input type="text" id="cname" name="cardname" placeholder="Adrian">
+            <label for="ccnum">Card number</label>
+            <input type="text" id="ccnum" name="cardnumber" placeholder="1111222233334444">
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" name="cvv" placeholder="444">
+
+
+            <div class="row">
+              <div class="col-50">
+                <label for="expyear">Exp Month</label>
+                <input type="text" id="expmonth" name="expmonth" placeholder="02">
+              </div>
+              <div class="col-50">
+                <label for="expmonth">Exp Year</label>
+                <input type="text" id="expyear" name="expyear" placeholder="25">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <input type="Submit" value="Pay" class="btn">
+      </form>
+    </div>
+  </div>
+
+ 
+  </div>
+</div>
+
+
+
+
+
+</html>

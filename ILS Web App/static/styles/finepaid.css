@@ -1,0 +1,45 @@
+form    {
+margin:auto;
+position:relative; top:50px;
+width:250px;
+height:50px;
+font-family: Tahoma, Geneva, sans-serif;
+font-size: 14px;
+font-style: italic;
+line-height: 24px;
+font-weight: bold;
+color: #000C;
+text-decoration: none;
+border-radius: 10px;
+padding:10px;
+border: 1px solid #000;
+border: inset 1px solid #000;
+opacity:0.9;
+background-color: white;
+}
+
+
+body {
+  padding-top: 56px;
+}
+#logout {
+cursor:pointer;
+width: 100px;
+text-indent: 40px;	
+display: block;
+display: incline-block;
+margin: 0 auto;
+text-align:left;
+font-size: 14px;
+color:White;
+right:10px
+}
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+}

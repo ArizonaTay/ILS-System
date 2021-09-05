@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Home</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../static/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../static/styles/home.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img class="img-responsive2"
+        src="../static/images/ILSLogo.png" width="95" height="80">Integrated Library System Singapore</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/booksearch">Book Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/showfine">My Fines</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/reserve">My Reservations</a>
+          </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Overview ILS</a>
+          </li>
+        </ul>
+        <a class="res-nav_click" href="/logout"><i class="fa-bars"></i></a>
+            <a href="/logout" id="logout" >Log out</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5">
+      <div class="col-lg-7">
+        <img style="vertical-align:right" src="../static/images/home.jpg" width ="650" height="140" alt="">
+      </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-5">
+        <h1 class="font-weight-bold" style="color:#12232E">Welcome To Our Library System!</h1>
+        <p style="color:#203647">Here you can search for all our books in our database, track your current loaned books and your reservations.</p>
+      </div>
+      <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
+
+    <!-- Call to Action Well -->
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+      <div class="card-body">
+        <p class="text-white m-0">You currently have {{count}} book(s) on loan...</p>
+      </div>
+    </div>
+
+   <div class="flashes">
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <span>{{ message }}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+  </div>
+<table class="table table-striped">
+            <tr>
+              <th>Book</th>
+              <th>Date Borrowed</th>
+              <th>Due Date</th>
+              <th colspan="5" text-align:center>Would you like to?</th>
+              <th></th>
+            </tr> 
+
+
+           {% for row in currentLoans %}
+           <tr>
+
+             <td>{{ row[0] }}</td>
+             <td>{{ row[1] }}</td>
+             <td>{{ row[2] }}</td>
+              <td>
+
+            <a class="btn btn-info" role="button" href="{{ url_for('returnBook', bookid=row.bookID, dateTime = row.dateTimeBorrowed)}}">Return Book</a>
+            <a class="btn btn-info" role="button" href="{{ url_for('extendBook', bookid=row.bookID ,dateTime = row.dateTimeBorrowed) }}">Extend Book</a>
+             </td>
+           </tr>
+           {% endfor %}
+
+   </table>
+
+    <!-- Content Row -->
+    <div class="row">
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title">Check Out Our Latest Book!</h2>
+            <div class="col-6 my-auto mx-auto"> <img src="https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/scott2.jpg" class="img-fluid"></div>
+            <p class="card-text">{{title[0]}}</p>
+          </div>
+          <div class="card-footer">
+            <a href="/booksearch" class="btn btn-primary btn-sm">More Info</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-4 -->
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title">Latest News and Events</h2>
+            <p class="card-text">Ongoing book exchange on the 5th of May.</p>
+            <h3 class="card-title">Notice</h3>
+            <p class="card-text"><ul>
+              <li style="color: #004E7C; font-size:14px">You cannot borrow, reserve or extend a book if you have outstanding fines.</li>
+              <li style="color: #004E7C; font-size:14px">You cannot borrow more than 4 books.</li>
+              <li style="color: #004E7C; font-size:14px">You cannot extend a book if it is reserved by someone else or the book is aleady past its due date.</li></p> 
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary btn-sm">More Info</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-4 -->
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title">Tips</h2>
+            <p class="card-text">Please check your outstanding fines in the navigation bar above or simply click the button below. Please also return your books by specified due date.</p>
+          </div>
+          <div class="card-footer">
+            <a href="/showfine" class="btn btn-primary btn-sm">Go to see your fines</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-4 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">GROUP 7 BT2102 &copy; Integrated Library System 2021</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

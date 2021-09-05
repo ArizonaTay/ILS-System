@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Reservation</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../static/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../static/styles/fines.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img class="img-responsive2"
+        src="../static/images/ILSLogo.png" width="95" height="80">Integrated Library System Singapore</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/booksearch">Book Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/showfine">My Fines</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">My Reservations
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Overview ILS</a>
+          </li>
+        </ul>
+        <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
+            <a href="/logout" id="logout" >Log out</a>
+      </div>
+    </div>
+  </nav>
+
+   <!-- Populating of Data -->
+
+
+
+{% if count == 0 %}
+<!-- Call to Action Well -->
+<div class="card text-white bg-secondary my-5 py-4 text-center">
+      <div class="card-body">
+        <p class="text-white m-0">You currently have no book reservations.</p>
+      </div>
+    </div>
+
+{% else %}
+<!-- Call to Action Well -->
+<div class="card text-white bg-secondary my-5 py-4 text-center">
+      <div class="card-body">
+        <p class="text-white m-0">You currently have {{count}} book reservations.</p>
+      </div>
+    </div>
+
+
+ <div class="main" >
+<form action='#' method="post">
+                  {% with messages = get_flashed_messages() %} {% if messages %}
+                  <div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
+                     <span>{{ messages[0] }}</span>
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     </button>
+                  </div>
+                  {% endif %} {% endwith %}
+                 <div class="form-group">
+               </div>
+ <div>
+<table class="table table-striped">
+      <thead>
+        <tr>
+            <th>Date Time Reserved</th>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Action</th>
+        </tr>
+        </thead>    
+        <tbody> 
+          {% for result in results %} 
+                <tr>
+                    <td>{{ result.dateTimeReserved }}</td>
+                    <td>{{ result.bookID }}</td>
+                    <td>{{ result.title }}</td>
+                    <td>
+                      <a class="btn btn-info" role="button" href="{{ url_for('loan2', bookid=result.bookID, action='reserve') }}">Loan</a>
+                      <a class="btn btn-info" role="button" href="{{ url_for('cancelreservation', bookid=result.bookID) }}">Cancel</a>
+                    </td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+    </div>
+  </div>
+
+{% endif %}
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+  
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+ 
+
+

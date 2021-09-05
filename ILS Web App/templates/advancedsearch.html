@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Advanced Search</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../static/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../static/styles/books.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="container" style="margin-top:60px">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img class="img-responsive2"
+        src="../static/images/ILSLogo.png" width="95" height="80">Integrated Library System Singapore</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/home">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Book Search
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/showfine">My Fines</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/reserve">My Reservations</a>
+          </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Overview ILS</a>
+          </li>
+        </ul>
+        <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
+            <a href="/logout" id="logout" >Log out</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main">
+    <a href="/booksearch">Back</a>
+    <div style = "width:800px; margin:0 auto;"class="col-md-6 col-sm-12">
+       <div class="search-form">
+          <form action='/advancedsearch' method="post">
+             <div class="form-group">
+                <label>Author</label>
+                <input type="text" class="form-control" placeholder="Author" name="author">
+                <label>Category</label>
+                <input type="text" class="form-control" placeholder="Category" name="category">
+                <label>Published Year</label>
+                <input type="text" class="form-control" placeholder="Year" name="publishedyear">
+             </div>
+             <p><input type="Submit" class = "button" value="Submit"/></p>
+          </form>
+       </div>
+    </div>
+ </div>
+  
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

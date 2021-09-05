@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Book Search</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../static/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="../static/styles/books.css" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img class="img-responsive2"
+        src="../static/images/ILSLogo.png" width="95" height="80">Integrated Library System Singapore</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/home">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Book Search
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/showfine">My Fines</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/reserve">My Reservations</a>
+          </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Overview ILS</a>
+          </li>
+        </ul>
+        <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
+            <a href="/logout" id="logout" >Log out</a>
+      </div>
+    </div>
+  </nav>
+
+  <div align="center" class="main" style="margin-top:60px">
+    <div class="col-md-6 col-sm-12">
+       <div class="search-form">
+          <form action='/booksearch' method="post">
+            {% with messages = get_flashed_messages() %} {% if messages %}
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+              <span>{{ messages[0] }}</span>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              </button>
+            </div>
+            {% endif %} {% endwith %}
+             <div class="search-wrapper">
+                <img class="search-icon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU2Ljk2NiA1Ni45NjYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2Ljk2NiA1Ni45NjY7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPHBhdGggZD0iTTU1LjE0Niw1MS44ODdMNDEuNTg4LDM3Ljc4NmMzLjQ4Ni00LjE0NCw1LjM5Ni05LjM1OCw1LjM5Ni0xNC43ODZjMC0xMi42ODItMTAuMzE4LTIzLTIzLTIzcy0yMywxMC4zMTgtMjMsMjMgIHMxMC4zMTgsMjMsMjMsMjNjNC43NjEsMCw5LjI5OC0xLjQzNiwxMy4xNzctNC4xNjJsMTMuNjYxLDE0LjIwOGMwLjU3MSwwLjU5MywxLjMzOSwwLjkyLDIuMTYyLDAuOTIgIGMwLjc3OSwwLDEuNTE4LTAuMjk3LDIuMDc5LTAuODM3QzU2LjI1NSw1NC45ODIsNTYuMjkzLDUzLjA4LDU1LjE0Niw1MS44ODd6IE0yMy45ODQsNmM5LjM3NCwwLDE3LDcuNjI2LDE3LDE3cy03LjYyNiwxNy0xNywxNyAgcy0xNy03LjYyNi0xNy0xN1MxNC42MSw2LDIzLjk4NCw2eiIgZmlsbD0iIzAwMDAwMCIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K"/>
+                <input type="text" class="search-input" placeholder="Search" name="title">
+             </div>
+             <p><input type="Submit" class = "button" value="Search"/></p>
+             <div>
+              Can't find? Try <a href="advancedsearch">Advanced Search</a>
+             </div>
+          </form>
+       </div>
+    </div>
+ </div>
+
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+          <th>Book Cover</th>
+          <th>Title</th>
+          <th>Availability</th>
+          <th>Action</th>
+      </tr>
+      </thead>    
+      <tbody>
+       {% for result in results %}    
+              <tr>
+                  <td><img src ='{{ result["thumbnailUrl"] }}'/></td>
+                  <td title ='{{result["longDescription"]}}'>{{ result["title"] }}<div id="btnwrap"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myOutput" data-backdrop="false">More Info</button></div></td>
+                  {% if result["dateTimeDue"] == "": %}
+                  <td>{{ result["bookstatus"] }}</td>
+                  {% else %}
+                  <td>{{ result["bookstatus"] }}<br/>Available on {{ result["dateTimeDue"] }}</td>
+                  {% endif %}
+                  <td>
+                  <a class="btn btn-info" role="button" href="{{ url_for('loan', bookid=result['_id'], action='borrow') }}">Loan</a>
+                  <a class="btn btn-info" role="button" href="{{ url_for('makereservation', bookid=result['_id'], status=result.status) }}">Reserve</a>
+                  </td>
+              </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
+
+{% for result in results %}
+<!-- Modal -->
+  <div class="modal" id="myOutput" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="col-12 modal-title text-left" style = "text-align:left">Additional Details</h4>
+        </div>
+        <div class="modal-body">
+          <p><strong>ISBN: {{ result["isbn"]}}<br/>Page Count: {{ result["pageCount"]}}<br/> Published Date: {{ result["publishedDate"]}}<br/> Authors: {{ result["authors"]}}<br/> Categories: {{result["categories"]}}</strong><br/><br/>{{result["shortDescription"]}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  {% endfor %}
+
+  
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
