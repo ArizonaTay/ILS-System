@@ -18,14 +18,14 @@ app.secret_key = "bt2102"
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'cj98@FI03'
+app.config['MYSQL_PASSWORD'] = 'Placeholder'
 app.config['MYSQL_DB'] = 'ILS'
 app.config["MONGO_URI"] = "mongodb://localhost:27017/ILS"
 
 mysql = MySQL(app)
 mongo = PyMongo(app)
 
-engine = create_engine('mysql+mysqlconnector://root:cj98@FI03@localhost/ILS')
+engine = create_engine('mysql+mysqlconnector://root:Placeholder@localhost/ILS')
 Session = sessionmaker(bind=engine)
 sqlsession = Session()
 
